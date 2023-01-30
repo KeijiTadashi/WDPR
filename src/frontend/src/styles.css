@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: #0f2047;
+    color: #eeecc9;
+    height: auto;
+}
+
+body {
+    background: linear-gradient(to top, #0f2047, #0a081d);
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+}
+
+header {
+    background-color: #0a081d;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+footer {
+    background: linear-gradient(to top, #0f2047, #0a081d);
+    padding: 1rem;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 2.4% 9.4%;
+    gap: 2.4%;
+}
+
+.col-1 {
+    grid-column: span 1;
+}
+.col-2 {
+    grid-column: span 2;
+}
+.col-3 {
+    grid-column: span 3;
+}
+.col-4 {
+    grid-column: span 4;
+}
+.col-5 {
+    grid-column: span 5;
+}
+.col-6 {
+    grid-column: span 6;
+}
+.col-7 {
+    grid-column: span 7;
+}
+.col-8 {
+    grid-column: span 8;
+}
+.col-9 {
+    grid-column: span 9;
+}
+.col-10 {
+    grid-column: span 10;
+}
+.col-11 {
+    grid-column: span 11;
+}
+.col-12 {
+    grid-column: span 12;
+}
+
+.flex-container-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 100%;
+    gap: 24px;
+}
+
+.box {
+    background-color: #0f2047;
+    width: 100%;
+    height: auto;
+    padding: 2%;
+}
+
+.hoverborder:hover {
+    border: 1px solid #BA965F
+}
+
+.image {
+    background-color: #891411;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+.image > .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transition-duration: 0.4s;
+    background-color: #891411;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.image:hover .overlay {
+    opacity: 0.5;
+}
+
+.aspect-ratio-4-3 {
+    aspect-ratio: 4 / 3;
+}
+.aspect-ratio-4-2 {
+    aspect-ratio: 4 / 2;
+}
+.aspect-ratio-2-3 {
+    aspect-ratio: 2 / 3;
+}
+
+.zitplaats {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: white;
+    margin: 5px;
+}
+
+.link {
+    color: #eeecc9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.banner {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .col-1,
+    .col-2,
+    .col-3 {
+        grid-column: span 1;
+    }
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8 {
+        grid-column: span 2;
+    }
+    .col-9,
+    .col-10,
+    .col-11 {
+        grid-column: span 3;
+    }
+    .col-12 {
+        grid-column: span 4;
+    }
+}

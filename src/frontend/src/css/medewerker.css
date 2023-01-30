@@ -1,0 +1,50 @@
+/*
+https://www.npmjs.com/package/react-dropdown
+The Dropdown package has a couple of divs with the following classnames that can also be set to myClassName by setting the correct prop
+defaultClassName => PropertyToSetForCustomClassName
+----------------------------------------------------------
+.Dropdown-root => className="myClassName"
+.Dropdown-control => controlClassName="..."
+.Dropdown-placeholder => placeholderClassName="..."
+.Dropdown-menu => menuClassName=""
+
+ArrowClasses are spans instead of divs
+.Dropdown-arrow => arrowClassName=""
+
+The arrowClosed & arrowOpen props enable passing in custom elements for the open/closed state arrows.
+arrowClosed={<span className="my-arrow-closed" />}
+arrowOpen=...
+*/
+
+/* .Dropdown-root => className=functie-dropdown*/
+.functie-dropdown {
+    background-color: white;
+    color: black;
+    width: 150px;
+}
+
+.Dropdown-control {
+    display: flex;
+    flex-direction: row;
+}
+
+.Dropdown-placeholder {
+    display: flex;
+    flex-grow: 1;
+    padding-left: 3px;
+    align-items: center;
+}
+
+.Dropdown-option {
+    padding-left: 3px;
+}
+
+.Dropdown-menu :hover {
+    background-color: aqua;
+}
+
+.arrow-dropdown {
+    display: flex;
+    flex-shrink: 1;
+    padding: 3px;
+}

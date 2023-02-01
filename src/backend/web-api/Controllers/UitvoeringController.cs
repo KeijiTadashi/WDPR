@@ -31,6 +31,16 @@ public class UitvoeringController : ControllerBase
         return _context.Uitvoeringen.Include(u => u.Voorstelling).Where(u => u.Id == id).Single();
     }
 
+    [HttpGet("GetUitvoeringenVoorstelling/{id}")]
+    public IEnumerable<Uitvoering?> GetuitvoeringenVoorstelling(int id)
+    {
+
+        System.Console.WriteLine("GET UITVOERINGEN VAN VOORSTELLING " + id);
+        var uitvoeringen = _context.Uitvoeringen.Where(u => u.Voorstelling.Id == id);
+        System.Console.WriteLine(uitvoeringen);
+        return uitvoeringen;
+    }
+
     [Authorize(Roles = $"{Roles.Admin},{Roles.Directie}")]
     [HttpPost("AddUitvoering")]
     public async Task<IActionResult> AddUitvoering([FromBody] UitvoeringAdd u)

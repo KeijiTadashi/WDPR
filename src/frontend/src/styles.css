@@ -101,7 +101,7 @@ footer {
 }
 
 .hoverborder:hover {
-    border: 1px solid #BA965F
+    border: 1px solid #ba965f;
 }
 
 .image {
@@ -119,13 +119,17 @@ footer {
     height: 100%;
     top: 0;
     transition-duration: 0.4s;
-    background-color: #891411;
+    /* background-color: #891411; */
     opacity: 0;
     overflow: hidden;
+
+    font-size: 24px;
+    /* -webkit-text-stroke: black 1px; */
 }
 
 .image:hover .overlay {
-    opacity: 0.5;
+    opacity: 0.8;
+    background-color: #891411;
 }
 
 .aspect-ratio-4-3 {
@@ -156,6 +160,12 @@ footer {
     width: 100%;
 }
 
+.button-uitvoering-datum {
+    min-width: 140px;
+    margin: 1%;
+    width: 48%;
+}
+
 @media screen and (max-width: 600px) {
     .grid {
         grid-template-columns: repeat(4, 1fr);
@@ -180,5 +190,10 @@ footer {
     }
     .col-12 {
         grid-column: span 4;
+    }
+    .button-uitvoering-datum {
+        min-width: 140px;
+        margin: 1%;
+        width: 98%;
     }
 }

@@ -6,4 +6,5 @@ public class Voorstelling
     public string Naam { get; set; }
     public string Beschrijving { get; set; }
     public string Soort { get; set; }
+    public byte[]? Image { get; set; }
 }

@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { getAuthTokenUser, setAuthToken } from "../helper/AuthToken";
+import logo from "../images/logo.png";
 
 export default function Header() {
     const isLoggedInName = getAuthTokenUser(); //is either false or the username
@@ -8,7 +9,10 @@ export default function Header() {
         <header>
             <div className="flex-container-row">
                 <Link className={"link"} to={"/"}>
-                    <h1 style={{ lineHeight: "0" }}>Theater Laak</h1>
+                    <div className="flex-container-row">
+                        <img src={logo} alt="logo theater Laak" />
+                        <h1 style={{ lineHeight: "0" }}>Theater Laak</h1>
+                    </div>
                 </Link>
                 <Link className={"link"} to={"/informatie"}>
                     Informatie

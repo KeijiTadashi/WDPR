@@ -3,7 +3,8 @@ import Layout from "../components/Layout";
 import { apiPath } from "../helper/ApiPath";
 import { useLocation } from "react-router-dom";
 //import ZaalPlattegrond from "../components/ZaalPlattegrond";
-import { Link } from "react-router-dom";
+import { apiPath } from "../helper/ApiPath";
+import { useLocation } from "react-router-dom";
 // belangrijk kunnen kijken welke voorstellingen er bv zaterdag zijn.
 
 function Uitvoering() {
@@ -13,19 +14,36 @@ function Uitvoering() {
 
     useEffect(() => {
         async function getUitvoering() {
-            const response = await fetch(`${apiPath}Uitvoering`);
+            const response = await fetch(
+                apiPath + "Uitvoering/" + uitvoering.id
+            );
             const data = await response.json();
-            setUitvoeringen(data);
+            setUitvoering(data);
         }
 
         getUitvoering();
     }, []);
 
-    const items = uitvoeringen.map((item) => (
-        <li key={item.id}>
-            Begin tijd: {item["beginTijd"]}, Eind tijd: {item["eindTijd"]}
-        </li>
-    ));
+    async function koopTicket() {
+        const response = await fetch("https://fakepay.azurewebsites.net/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+                amount: 10,
+                reference: 1,
+                url: apiPath + "Ticket/BuyTicket",
+            }),
+        });
+
+        if (response.ok) {
+            const html = await response.text();
+            const popup = window.open();
+            popup.document.write(html);
+        }
+    }
+
     return (
         <Layout>
             <h1>{uitvoering.voorstelling.naam}</h1>
@@ -38,6 +56,8 @@ function Uitvoering() {
             <Link to={"/uitvoering/:uitvoeringId/reserveren"}>
                 <button>Reserveer</button>
             </Link>
+            <h2>Uitvoeringen:</h2>
+            <button onClick={koopTicket}>Koop ticket</button>
         </Layout>
     );
     // const [uitvoeringen, setUitvoeringen] = useState([]);

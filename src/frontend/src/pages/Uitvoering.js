@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { Link } from "react-router-dom";
 // belangrijk kunnen kijken welke voorstellingen er bv zaterdag zijn.
 
 function Uitvoering() {
@@ -23,8 +24,11 @@ function Uitvoering() {
 
     return (
         <Layout>
-            <h2>Uitvoeringen:</h2>
+            <h2>Uitvoering:</h2>
             <ul>{items}</ul>
+            <Link to={"/uitvoering/:uitvoeringId/reserveren"}>
+              <button>Reserveer</button>
+            </Link>
         </Layout>
     );
 }

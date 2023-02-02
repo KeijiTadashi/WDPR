@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
-function Reserveer() {
-
+function Reserveer(props) {
+    console.log(props)
 }
 
 export default function Zitplaats(props) {
@@ -14,9 +14,7 @@ export default function Zitplaats(props) {
   }
 
   return (
-    <Link to={"/reserveren"}>
-      <div className={"zitplaats"} onClick={Reserveer} style={{background: statusColor}}>
+      <div className={"zitplaats"} onClick={() => Reserveer(props)} style={{background: statusColor}}>
       </div>
-    </Link>
   );
 }

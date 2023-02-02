@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <Voorstelling />,
     },
     {
-        path: "uitvoering/:id",
+        path: "uitvoering",
         element: <Uitvoering />,
     },
     {
@@ -67,11 +67,11 @@ const router = createBrowserRouter([
     },
     {
         path: "zaalhuren",
-        element: <ZaalHuren />
+        element: <ZaalHuren />,
     },
     {
         path: "doneren",
-        element: <Doneren />
+        element: <Doneren />,
     },
     {
         path: "medewerker",

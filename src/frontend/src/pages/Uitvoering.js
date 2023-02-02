@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import {apiPath} from "../helper/ApiPath";
+import {useLocation} from "react-router-dom";
 // belangrijk kunnen kijken welke voorstellingen er bv zaterdag zijn.
 
 function Uitvoering() {
@@ -39,7 +41,7 @@ function Uitvoering() {
     return (
         <Layout>
             <h2>Uitvoeringen:</h2>
-            <ul>{items}</ul>
+            <button onClick={koopTicket}>Koop ticket</button>
         </Layout>
     );
 }

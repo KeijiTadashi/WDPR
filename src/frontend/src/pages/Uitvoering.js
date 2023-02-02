@@ -1,28 +1,26 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { apiPath } from "../helper/ApiPath";
 import { useLocation } from "react-router-dom";
 //import ZaalPlattegrond from "../components/ZaalPlattegrond";
-import { apiPath } from "../helper/ApiPath";
-import { useLocation } from "react-router-dom";
 // belangrijk kunnen kijken welke voorstellingen er bv zaterdag zijn.
 
 function Uitvoering() {
     const { uitvoering } = useLocation().state;
     console.log(uitvoering);
-    const [uitvoeringen, setUitvoeringen] = useState([]);
+    // const [uitvoeringen, setUitvoeringen] = useState([]);
 
-    useEffect(() => {
-        async function getUitvoering() {
-            const response = await fetch(
-                apiPath + "Uitvoering/" + uitvoering.id
-            );
-            const data = await response.json();
-            setUitvoering(data);
-        }
+    // useEffect(() => {
+    //     async function getUitvoering() {
+    //         const response = await fetch(
+    //             apiPath + "Uitvoering/" + uitvoering.id
+    //         );
+    //         const data = await response.json();
+    //         setUitvoeringen(data);
+    //     }
 
-        getUitvoering();
-    }, []);
+    //     getUitvoering();
+    // }, []);
 
     async function koopTicket() {
         const response = await fetch("https://fakepay.azurewebsites.net/", {
@@ -52,10 +50,6 @@ function Uitvoering() {
                 uitvoeringId={uitvoering.id}
             /> AAN HET MAKEN*/}
             <h2>Uitvoering:</h2>
-            <ul>{items}</ul>
-            <Link to={"/uitvoering/:uitvoeringId/reserveren"}>
-                <button>Reserveer</button>
-            </Link>
             <h2>Uitvoeringen:</h2>
             <button onClick={koopTicket}>Koop ticket</button>
         </Layout>

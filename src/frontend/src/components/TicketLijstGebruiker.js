@@ -1,4 +1,3 @@
-import { getAuthTokenUser } from "../helper/AuthToken";
 import React from "react";
 import axios from "axios";
 import { apiPath } from "../helper/ApiPath";
@@ -13,7 +12,6 @@ class TicketLijstGebruiker extends React.Component {
     }
 
     componentDidMount() {
-        const userName = getAuthTokenUser();
         axios.get(apiPath + "Ticket/GetTicketsCurrentUser").then((response) => {
             console.log(response);
             this.setState({ tickets: response.data, loaded: true });

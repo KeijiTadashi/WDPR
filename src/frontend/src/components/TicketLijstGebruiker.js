@@ -14,12 +14,10 @@ class TicketLijstGebruiker extends React.Component {
 
     componentDidMount() {
         const userName = getAuthTokenUser();
-        axios
-            .get(apiPath + "Ticket/GetTicketsCurrentUser/" + userName)
-            .then((response) => {
-                console.log(response);
-                this.setState({ tickets: response.data, loaded: true });
-            });
+        axios.get(apiPath + "Ticket/GetTicketsCurrentUser").then((response) => {
+            console.log(response);
+            this.setState({ tickets: response.data, loaded: true });
+        });
     }
 
     render() {

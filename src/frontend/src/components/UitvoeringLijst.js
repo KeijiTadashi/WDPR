@@ -32,8 +32,8 @@ export default class UitvoeringLijst extends React.Component {
                 <h2>datums</h2>
                 {this.state.uitvoeringen.map((u) => (
                     <Link
-                        to={"/uitvoering/"}
-                        state={{ id: u.id }}
+                        to={"/uitvoering"}
+                        state={{ uitvoering: u }}
                         key={u.id.toString()}
                     >
                         <button className="button-uitvoering-datum">

@@ -32,7 +32,7 @@ function Login() {
             <form>
                 <label>Gebruikersnaam</label>
                 <br />
-                <input type={"text"} id={"username"} ref={usernameRef}></input>
+                <input type={"email"} id={"username"} ref={usernameRef}></input>
                 <br />
                 <label>Wachtwoord</label>
                 <br />

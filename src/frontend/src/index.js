@@ -19,6 +19,7 @@ import Voorstelling from "./pages/Voorstelling";
 import ZaalHuren from "./pages/ZaalHuren";
 import Doneren from "./pages/Doneren";
 import Winkelmand from "./pages/Winkelmand";
+import Uitvoering2 from "./pages/Uitvoering2";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     {
         path: "uitvoering",
         element: <Uitvoering />,
+    },
+    {
+        path: "uitvoering2",
+        element: <Uitvoering2 />,
     },
     {
         path: "kalender",

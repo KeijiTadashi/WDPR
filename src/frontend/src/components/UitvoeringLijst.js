@@ -32,7 +32,7 @@ export default class UitvoeringLijst extends React.Component {
                 <h2>datums</h2>
                 {this.state.uitvoeringen.map((u) => (
                     <Link
-                        to={"/uitvoering"}
+                        to={"/uitvoering2"}
                         state={{ uitvoering: u }}
                         key={u.id.toString()}
                     >

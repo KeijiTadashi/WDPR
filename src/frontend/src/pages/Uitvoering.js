@@ -45,10 +45,6 @@ function Uitvoering() {
     return (
         <Layout>
             <h1>{uitvoering.voorstelling.naam}</h1>
-            {/* <ZaalPlattegrond
-                zaal={uitvoering.zaal}
-                uitvoeringId={uitvoering.id}
-            /> AAN HET MAKEN*/}
             <h2>Uitvoering:</h2>
             <h2>Uitvoeringen:</h2>
             <button onClick={koopTicket}>Koop ticket</button>

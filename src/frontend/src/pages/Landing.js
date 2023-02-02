@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import UitvoeringItem from "../components/UitvoeringItem";
 import { useEffect, useState } from "react";
 import { apiPath } from "../helper/ApiPath";
 import logo from "../images/logo.png";
 import poster from "../images/War of the worlds.jpg";
-import { Navigate } from "react-router-dom";
 
 function Landing() {
     const [voorstelingen, setVoorstellingen] = useState([]);

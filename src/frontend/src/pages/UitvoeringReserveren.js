@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import Zitplaats from "../components/Zitplaats";
 import ZaalPlattegrond from "../components/ZaalPlattegrond";
 
 function UitvoeringReserveren() {

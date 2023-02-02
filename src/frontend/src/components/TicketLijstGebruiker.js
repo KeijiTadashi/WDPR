@@ -2,7 +2,6 @@ import { getAuthTokenUser } from "../helper/AuthToken";
 import React from "react";
 import axios from "axios";
 import { apiPath } from "../helper/ApiPath";
-import { useEffect } from "react";
 
 class TicketLijstGebruiker extends React.Component {
     constructor(props) {

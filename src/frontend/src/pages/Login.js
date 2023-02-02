@@ -1,9 +1,8 @@
 import Layout from "../components/Layout";
 import axios from "axios";
 import { setAuthToken } from "../helper/AuthToken";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { apiPath } from "../helper/ApiPath";
-import { redirect } from "react-router-dom";
 
 function LoginJWT(username, password) {
     const loginInfo = {

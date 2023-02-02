@@ -18,7 +18,7 @@ function Medewerker() {
 
     // const functies = ["Admin", "Directie", "Medewerker"];
     const functies = ["Directie", "Medewerker"];
-    const defaultOption = functies[0];
+    // const defaultOption = functies[0];
 
     return (
         <Layout>

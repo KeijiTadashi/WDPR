@@ -2,8 +2,11 @@ import Zitplaats from "./Zitplaats";
 import React from "react";
 import axios from "axios";
 import { apiPath } from "../helper/ApiPath";
+import { useEffect, useState } from "react";
+import { apiPath } from "../helper/ApiPath";
 
-export default class ZaalPlattegrond extends React.Component {
+//export default class ZaalPlattegrond extends React.Component { Tijdelijk, want ik was hier ook aan aan het werken
+class ZaalPlattegrond2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,12 +28,10 @@ export default class ZaalPlattegrond extends React.Component {
                 this.setState({ tickets: response.data, loaded: true });
             });
     }
-
     render() {
         return (
             <>
                 <div>INFO: Zaal: {this.props.zaal.naam}</div>
-                <Zitplaats />
                 {this.state.loaded ? (
                     <ul>
                         {this.state.tickets.map(
@@ -51,4 +52,24 @@ export default class ZaalPlattegrond extends React.Component {
             </>
         );
     }
+}
+
+export default function ZaalPlattegrond() {
+    const [zitplaatsen, setZitplaatsen] = useState([]);
+
+    useEffect(() => {
+        fetch(apiPath + "Zitplaats")
+            .then((response) => response.json())
+            .then((data) => {
+                setZitplaatsen(data);
+                console.log(data);
+            });
+    }, []);
+    return (
+        <div className="box">
+            {zitplaatsen.map((zitplaats) => (
+                <Zitplaats state={{ zitplaats: zitplaats }}></Zitplaats>
+            ))}
+        </div>
+    );
 }

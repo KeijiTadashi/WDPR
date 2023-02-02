@@ -18,6 +18,7 @@ import { setAuthToken } from "./helper/AuthToken";
 import Voorstelling from "./pages/Voorstelling";
 import ZaalHuren from "./pages/ZaalHuren";
 import Doneren from "./pages/Doneren";
+import Winkelmand from "./pages/Winkelmand";
 
 const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
     {
         path: "medewerker",
         element: <Medewerker />,
+    },
+    {
+        path: "winkelmand",
+        element: <Winkelmand />,
     },
 ]);
 

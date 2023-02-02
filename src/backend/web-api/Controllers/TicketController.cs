@@ -48,31 +48,31 @@ public class TicketController : ControllerBase
         return tickets;
     }
 
-    // [Authorize]
-    // [HttpPost("BuyTicket")]
-    // public async Task<ActionResult<Ticket>> BuyTicket([FromBody] TicketBuy t)
-    // {
-    //     try
-    //     {
-    //         var user = await _userManager.FindByNameAsync(System.Security.Claims.ClaimsPrincipal.Current.Identity.Name);
-    //         var uitvoering = await _context.Uitvoeringen.SingleAsync(u => u.Id == t.UitvoeringId);
-    //         var zitplaats = await _context.Zitplaatsen.SingleAsync(z => z.Id == t.ZitplaatsId);
-    //         Ticket ticket = new Ticket() { Klant = user, Uitvoering = uitvoering, Zitplaats = zitplaats };
-    //         await _context.Tickets.AddAsync(ticket);
-    //         await _context.SaveChangesAsync();
-    //         return Ok(ticket);
-    //     }
-    //     catch
-    //     {
-    //         return BadRequest("Kon het kaartje niet kopen");
-    //     }
-    //     // var ticket = await _context.Tickets.FindAsync(t.Id);
-    //     // if (ticket == null)
-    //     //     return Problem(title: "Unknown ticket", detail: $"The ticket with id: {t.Id} couldn't be found.", statusCode: StatusCodes.Status404NotFound);
-    //     // ticket.IsSold = true;
-    //     // ticket.Klant = user;
-    //     // if (await TryUpdateModelAsync<Ticket>(ticket))
-    //     //     return Ok();
-    //     // return BadRequest();
-    // }
+    [Authorize]
+    [HttpPost("BuyTicket")]
+    public async Task<ActionResult<Ticket>> BuyTicket([FromBody] TicketBuy t)
+    {
+        try
+        {
+            var user = await _userManager.FindByNameAsync(System.Security.Claims.ClaimsPrincipal.Current.Identity.Name);
+            var uitvoering = await _context.Uitvoeringen.SingleAsync(u => u.Id == t.UitvoeringId);
+            var zitplaats = await _context.Zitplaatsen.SingleAsync(z => z.Id == t.ZitplaatsId);
+            Ticket ticket = new Ticket() { Klant = user, Uitvoering = uitvoering, Zitplaats = zitplaats };
+            await _context.Tickets.AddAsync(ticket);
+            await _context.SaveChangesAsync();
+            return Ok(ticket);
+        }
+        catch
+        {
+            return BadRequest("Kon het kaartje niet kopen");
+        }
+        // var ticket = await _context.Tickets.FindAsync(t.Id);
+        // if (ticket == null)
+        //     return Problem(title: "Unknown ticket", detail: $"The ticket with id: {t.Id} couldn't be found.", statusCode: StatusCodes.Status404NotFound);
+        // ticket.IsSold = true;
+        // ticket.Klant = user;
+        // if (await TryUpdateModelAsync<Ticket>(ticket))
+        //     return Ok();
+        // return BadRequest();
+    }
 }

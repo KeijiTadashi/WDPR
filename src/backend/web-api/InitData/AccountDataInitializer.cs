@@ -75,10 +75,10 @@ public static class AccountDataInitializer
         {
             List<Zaal> zalen = new List<Zaal>()
             {
-                new Zaal(){ Naam = "Zaal 1" },
-                new Zaal(){ Naam = "Zaal 2" },
-                new Zaal(){ Naam = "Zaal 3" },
-                new Zaal(){ Naam = "Zaal 4" }
+                new Zaal(){ Naam = "Zaal 1", Rijen = 15, Kolommen = 10 },
+                new Zaal(){ Naam = "Zaal 2", Rijen = 15, Kolommen = 10 },
+                new Zaal(){ Naam = "Zaal 3", Rijen = 15, Kolommen = 10 },
+                new Zaal(){ Naam = "Zaal 4", Rijen = 15, Kolommen = 10 }
             };
             List<Zitplaats> zitplaatsen = new List<Zitplaats>();
             foreach (Zaal z in zalen)
@@ -90,6 +90,10 @@ public static class AccountDataInitializer
                         if (column != 2 && column != 8)
                         {
                             zitplaatsen.Add(new Zitplaats() { Kolom = column, Rij = row, Rang = (row % 4) + 1, Zaal = z, ZaalId = z.ZaalId });
+                        }
+                        else
+                        {
+                            zitplaatsen.Add(new Zitplaats() { Kolom = column, Rij = row, Rang = 0, Zaal = z, ZaalId = z.ZaalId });
                         }
                     }
                 }
@@ -116,6 +120,7 @@ public static class AccountDataInitializer
             // List<Medewerker> medewerkers; //maybe skip, put in SeedUsers
 
             List<Ticket> tickets = new List<Ticket>(); //after klant
+            List<Betaling> betalingen = new List<Betaling>();
             List<Account> klanten = userManager.Users.Where(u => u.AccountType == "klant").ToList();
             {
                 foreach (Uitvoering uitvoering in uitvoeringen)
@@ -125,7 +130,10 @@ public static class AccountDataInitializer
                     {
                         if (rnd.Next(1000) >= 985) // 1.5%
                         {
-                            tickets.Add(new Ticket() { Klant = klanten[rnd.Next(klanten.Count)], Uitvoering = uitvoering, Zitplaats = zitplaats });
+                            Account rndKlant = klanten[rnd.Next(klanten.Count)];
+                            Ticket ticket = new Ticket() { Klant = rndKlant, Uitvoering = uitvoering, Zitplaats = zitplaats };
+                            betalingen.Add(new Betaling() { Klant = rndKlant, Status = "Betaald", tickets = new List<Ticket>() { ticket } });
+                            tickets.Add(ticket);
                         }
                     }
                 }
@@ -138,6 +146,7 @@ public static class AccountDataInitializer
             context.Voorstellingen.AddRange(voorstellingen);
             context.Uitvoeringen.AddRange(uitvoeringen);
             context.Tickets.AddRange(tickets);
+            context.Betalingen.AddRange(betalingen);
             context.SaveChanges();
         }
     }

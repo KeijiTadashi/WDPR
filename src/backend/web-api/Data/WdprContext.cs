@@ -23,5 +23,6 @@ public class WdprContext : IdentityDbContext<Account, IdentityRole, string>
     public DbSet<Zaal> Zalen { get; set; }
     public DbSet<Zitplaats> Zitplaatsen { get; set; }
     public DbSet<Account> Account { get; set; } = default!;
+    public DbSet<Betaling> Betalingen { get; set; }
 
 }

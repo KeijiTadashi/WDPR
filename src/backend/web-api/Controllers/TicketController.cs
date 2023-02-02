@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using webapi.DataTemplateObjects;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace webapi.Controllers;
 
@@ -26,21 +27,17 @@ public class TicketController : ControllerBase
     public IEnumerable<Ticket?> GetTicketsUitvoering(int uitvoeringId)
     {
         var tickets = _context.Tickets.Where(t => t.Uitvoering.Id == uitvoeringId);
-        foreach (Ticket t in tickets)
-        {
-            t.Klant = null;
-        }
         return tickets;
     }
 
     [Authorize]
-    [HttpGet("GetTicketsCurrentUser/{userName}")]
-    public async Task<IEnumerable<Ticket?>> GetTicketsAccount(string userName)
+    [HttpGet("GetTicketsCurrentUser")]
+    public async Task<IEnumerable<Ticket?>> GetTicketsAccount()
     {
-        // var userClaim = this.User;
-        System.Console.WriteLine("GET TICKETS 1");
-        // var user = await _userManager.FindByNameAsync(HttpContext.Current.User.Identity.Name);
-        // var user = await _userManager.GetUserAsync(User); // For some reason null even though you have to be authorized (a loggedin user for this function)
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        var claims = identity.Claims;
+        var userName = claims.FirstOrDefault(c => c.Type == "name").Value;
+
         var user = await _userManager.FindByNameAsync(userName);
         var tickets = _context.Tickets
         .Include(t => t.Klant)
@@ -51,30 +48,31 @@ public class TicketController : ControllerBase
         return tickets;
     }
 
-    [Authorize]
-    [HttpPost("BuyTicket")]
-    public async Task<IActionResult> BuyTicket([FromBody] TicketBuy t)
-    {
-        try
-        {
-            var user = await _userManager.FindByNameAsync(System.Security.Claims.ClaimsPrincipal.Current.Identity.Name);
-            var uitvoering = _context.Uitvoeringen.Single(u => u.Id == t.UitvoeringId);
-            var zitplaats = _context.Zitplaatsen.Single(z => z.Id == t.ZitplaatsId);
-            await _context.Tickets.AddAsync(new Ticket() { Klant = user, Uitvoering = uitvoering, Zitplaats = zitplaats });
-            await _context.SaveChangesAsync();
-            return Ok();
-        }
-        catch
-        {
-            return BadRequest("Kon het kaartje niet kopen");
-        }
-        // var ticket = await _context.Tickets.FindAsync(t.Id);
-        // if (ticket == null)
-        //     return Problem(title: "Unknown ticket", detail: $"The ticket with id: {t.Id} couldn't be found.", statusCode: StatusCodes.Status404NotFound);
-        // ticket.IsSold = true;
-        // ticket.Klant = user;
-        // if (await TryUpdateModelAsync<Ticket>(ticket))
-        //     return Ok();
-        // return BadRequest();
-    }
+    // [Authorize]
+    // [HttpPost("BuyTicket")]
+    // public async Task<ActionResult<Ticket>> BuyTicket([FromBody] TicketBuy t)
+    // {
+    //     try
+    //     {
+    //         var user = await _userManager.FindByNameAsync(System.Security.Claims.ClaimsPrincipal.Current.Identity.Name);
+    //         var uitvoering = await _context.Uitvoeringen.SingleAsync(u => u.Id == t.UitvoeringId);
+    //         var zitplaats = await _context.Zitplaatsen.SingleAsync(z => z.Id == t.ZitplaatsId);
+    //         Ticket ticket = new Ticket() { Klant = user, Uitvoering = uitvoering, Zitplaats = zitplaats };
+    //         await _context.Tickets.AddAsync(ticket);
+    //         await _context.SaveChangesAsync();
+    //         return Ok(ticket);
+    //     }
+    //     catch
+    //     {
+    //         return BadRequest("Kon het kaartje niet kopen");
+    //     }
+    //     // var ticket = await _context.Tickets.FindAsync(t.Id);
+    //     // if (ticket == null)
+    //     //     return Problem(title: "Unknown ticket", detail: $"The ticket with id: {t.Id} couldn't be found.", statusCode: StatusCodes.Status404NotFound);
+    //     // ticket.IsSold = true;
+    //     // ticket.Klant = user;
+    //     // if (await TryUpdateModelAsync<Ticket>(ticket))
+    //     //     return Ok();
+    //     // return BadRequest();
+    // }
 }

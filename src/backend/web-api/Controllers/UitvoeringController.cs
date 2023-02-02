@@ -36,7 +36,7 @@ public class UitvoeringController : ControllerBase
     {
 
         System.Console.WriteLine("GET UITVOERINGEN VAN VOORSTELLING " + id);
-        var uitvoeringen = _context.Uitvoeringen.Where(u => u.Voorstelling.Id == id);
+        var uitvoeringen = _context.Uitvoeringen.Where(u => u.Voorstelling.Id == id).Include(v => v.Zaal).Include(v => v.Voorstelling);
         System.Console.WriteLine(uitvoeringen);
         return uitvoeringen;
     }

@@ -5,7 +5,6 @@ import { apiPath } from "../helper/ApiPath";
 
 export default function ZaalPlattegrond() {
     const [zitplaatsen, setZitplaatsen] = useState([]);
-    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         fetch(apiPath + "Zitplaats")
@@ -13,7 +12,6 @@ export default function ZaalPlattegrond() {
             .then((data) => {
                 setZitplaatsen(data);
                 console.log(data);
-                setLoaded(true);
             });
     }, []);
   return (

@@ -19,16 +19,16 @@ public class UitvoeringController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Uitvoering?> Get()
+    public IEnumerable<Uitvoering?> GetUitvoeringen()
     {
-        return _context.Uitvoeringen;
+        return _context.Uitvoeringen.Include(uitvoering => uitvoering.Voorstelling).Include(uitvoering => uitvoering.Zaal);
     }
 
     [HttpGet("{id}")]
-    public async Task<Uitvoering?> Get(int id)
+    public async Task<Uitvoering?> GetUitvoering(int id)
     {
         // return await _context.Uitvoeringen.FindAsync(id);
-        return _context.Uitvoeringen.Include(u => u.Voorstelling).Where(u => u.Id == id).Single();
+        return _context.Uitvoeringen.Include(u => u.Voorstelling).Include(uitvoering => uitvoering.Zaal).Single(u => u.Id == id);
     }
 
     [HttpGet("GetUitvoeringenVoorstelling/{id}")]

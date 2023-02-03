@@ -26,7 +26,7 @@ public class TicketController : ControllerBase
     [HttpGet("{uitvoeringId}")]
     public IEnumerable<Ticket?> GetTicketsUitvoering(int uitvoeringId)
     {
-        var tickets = _context.Tickets.Where(t => t.Uitvoering.Id == uitvoeringId).Include(t => t.Zitplaats);
+        var tickets = _context.Tickets.Where(t => t.Uitvoering.Id == uitvoeringId).Include(t => t.Zitplaats).Include(t => t.Klant).Include(t => t.Uitvoering);
         return tickets;
     }
 

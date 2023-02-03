@@ -13,11 +13,12 @@ export default class Zitplaats2 extends React.Component {
         this.clicked = this.clicked.bind(this);
 
         var mandje = sessionStorage.getItem("mandje");
-        if (mandje !== null) {
-            mandje = JSON.parse(mandje);
-            if (mandje.includes(this.state.ticketKey))
-                this.state.geselecteerd = true;
+        if (mandje === null) {
+            mandje = [];
         }
+        // mandje = JSON.parse(mandje);
+        if (mandje.includes(JSON.stringify(this.state.ticketKey)))
+            this.state.geselecteerd = true;
     }
 
     clicked() {

@@ -4,6 +4,7 @@ import axios from "axios";
 // import { useEffect, useState } from "react";
 import { apiPath } from "../helper/ApiPath";
 import Zitplaats2 from "./Zitplaats2";
+import { Link } from "react-router-dom";
 // import linq from "linq";
 
 export default class ZaalPlattegrond2 extends React.Component {
@@ -63,7 +64,12 @@ export default class ZaalPlattegrond2 extends React.Component {
                             beschikbaar={false}
                             rang={rang}
                             key={`r${rij}k${kolom}`}
-                            ticketKey={`u${this.state.uitvoeringId}r${rij}k${kolom}`}
+                            ticketKey={[
+                                this.state.uitvoeringId,
+                                rij,
+                                kolom,
+                                rang,
+                            ]}
                         />
                     );
                 } else {
@@ -72,7 +78,12 @@ export default class ZaalPlattegrond2 extends React.Component {
                             beschikbaar={true}
                             rang={rang}
                             key={`r${rij}k${kolom}`}
-                            ticketKey={`u${this.state.uitvoeringId}r${rij}k${kolom}`}
+                            ticketKey={[
+                                this.state.uitvoeringId,
+                                rij,
+                                kolom,
+                                rang,
+                            ]}
                         />
                     );
                 }
@@ -115,34 +126,37 @@ export default class ZaalPlattegrond2 extends React.Component {
                                 Legenda:
                                 <ul>
                                     <li>
-                                        Prijs 1e rang:{" "}
+                                        Prijs 1e rang: &euro;
                                         {
                                             this.state.uitvoering.voorstelling
                                                 .prijs1
                                         }
                                     </li>
                                     <li>
-                                        Prijs 2e rang:{" "}
+                                        Prijs 2e rang: &euro;
                                         {
                                             this.state.uitvoering.voorstelling
                                                 .prijs2
                                         }
                                     </li>
                                     <li>
-                                        Prijs 3e rang:{" "}
+                                        Prijs 3e rang: &euro;
                                         {
                                             this.state.uitvoering.voorstelling
                                                 .prijs3
                                         }
                                     </li>
                                     <li>
-                                        Prijs 4e rang:{" "}
+                                        Prijs 4e rang: &euro;
                                         {
                                             this.state.uitvoering.voorstelling
                                                 .prijs4
                                         }
                                     </li>
                                 </ul>
+                                <Link to={"../Winkelmand"}>
+                                    <button>Koop tickets</button>
+                                </Link>
                             </div>
                         </>
                     ) : (

@@ -13,7 +13,7 @@ function Register(userName, password) {
         .post(`${apiPath}api/account/registreer_klant`, data)
         .then((response) => {
             console.log(response);
-            if (response.status == 201) {
+            if (response.status === 201) {
                 console.log("OK");
             } else {
                 console.log("Error");
@@ -39,7 +39,7 @@ function Registreren() {
     return (
         <Layout>
             <form>
-                <label>Gebruikersnaam</label>
+                <label>E-mail</label>
                 <br />
                 <input
                     type={"email"}

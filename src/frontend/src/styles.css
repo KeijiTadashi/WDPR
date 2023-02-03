@@ -93,6 +93,15 @@ footer {
     gap: 24px;
 }
 
+.zaal-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 100%;
+    gap: 2px;
+}
+
 .box {
     background-color: #0f2047;
     width: 100%;
@@ -144,10 +153,16 @@ footer {
 
 .zitplaats {
     display: inline-block;
+    text-align: center;
+    color: black;
     width: 30px;
     height: 30px;
     background: white;
     margin: 5px;
+}
+
+.invisible {
+    visibility: hidden;
 }
 
 .link {

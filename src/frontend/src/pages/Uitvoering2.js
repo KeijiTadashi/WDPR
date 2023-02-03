@@ -7,7 +7,6 @@ import ZaalPlattegrond2 from "../components/ZaalPlattegrond2";
 
 function Uitvoering2() {
     const { uitvoering } = useLocation().state;
-    console.log(uitvoering);
 
     return (
         <Layout>

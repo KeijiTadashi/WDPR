@@ -100,10 +100,10 @@ public static class AccountDataInitializer
             }
             List<Voorstelling> voorstellingen = new List<Voorstelling>()
             {
-                new Voorstelling(){Naam = "War of the Worlds - Jeff Wayne", Beschrijving = "Musical of the War of the Worlds story performed by Jeff Wayne", Soort = "Musical"},
-                new Voorstelling(){Naam = "The lion king", Beschrijving = "Beleef de Koning der Musicals Disney's The Lion King.", Soort = "Musical"},
-                new Voorstelling(){Naam = "1984 - New European Ensemble", Beschrijving = "New European Ensemble laat zien dat de dystopische roman 1984 van George Orwell gigantisch actueel is. De voorspellingen die Orwell in 1949 maakte, lijken hier en daar daadwerkelijk uit te komen. De muzikanten geven dit op een experimentele manier weer door middel van muziek, tekst en beeld. New European Ensemble werkte voor deze voorstelling met behulp van een videoverbinding samen met klokkenluider Edward Snowden. De roman is bewerkt door Mihkel Kerhem.", Soort = "Klassieke concerten"},
-                new Voorstelling(){Naam = "Steven Wilson - The Future Bites Tour", Beschrijving = "De tour van het nieuwe album The Future Bites van Steven Wilson", Soort = "Concert"}
+                new Voorstelling(){Naam = "War of the Worlds - Jeff Wayne", Beschrijving = "Musical of the War of the Worlds story performed by Jeff Wayne", Soort = "Musical", prijs1 = 35.50f, prijs2 = 23f, prijs3 = 20.99f, prijs4 = 15f},
+                new Voorstelling(){Naam = "The lion king", Beschrijving = "Beleef de Koning der Musicals Disney's The Lion King.", Soort = "Musical", prijs1 = 35.50f, prijs2 = 23f, prijs3 = 20.99f, prijs4 = 15f},
+                new Voorstelling(){Naam = "1984 - New European Ensemble", Beschrijving = "New European Ensemble laat zien dat de dystopische roman 1984 van George Orwell gigantisch actueel is. De voorspellingen die Orwell in 1949 maakte, lijken hier en daar daadwerkelijk uit te komen. De muzikanten geven dit op een experimentele manier weer door middel van muziek, tekst en beeld. New European Ensemble werkte voor deze voorstelling met behulp van een videoverbinding samen met klokkenluider Edward Snowden. De roman is bewerkt door Mihkel Kerhem.", Soort = "Klassieke concerten", prijs1 = 35.50f, prijs2 = 23f, prijs3 = 20.99f, prijs4 = 15f},
+                new Voorstelling(){Naam = "Steven Wilson - The Future Bites Tour", Beschrijving = "De tour van het nieuwe album The Future Bites van Steven Wilson", Soort = "Concert", prijs1 = 35.50f, prijs2 = 23f, prijs3 = 20.99f, prijs4 = 15f}
             };
             List<Uitvoering> uitvoeringen = new List<Uitvoering>();
             int zaalMod = 0;

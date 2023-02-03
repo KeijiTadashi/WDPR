@@ -11,10 +11,7 @@ function Uitvoering2() {
     return (
         <Layout>
             <h1>{uitvoering.voorstelling.naam}</h1>
-            <ZaalPlattegrond2
-                zaal={uitvoering.zaal}
-                uitvoeringId={uitvoering.id}
-            />
+            <ZaalPlattegrond2 zaal={uitvoering.zaal} uitvoering={uitvoering} />
             <h2>Uitvoering:</h2>
         </Layout>
     );

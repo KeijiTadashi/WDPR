@@ -11,7 +11,8 @@ export default class ZaalPlattegrond2 extends React.Component {
         super(props);
         this.state = {
             zaal: props.zaal,
-            uitvoeringId: props.uitvoeringId,
+            uitvoeringId: props.uitvoering.id,
+            uitvoering: props.uitvoering,
             zitplaatsen: [],
             zitplaatsComponenten: [],
             tickets: [],
@@ -93,21 +94,59 @@ export default class ZaalPlattegrond2 extends React.Component {
                 <div className="grid">
                     <div className="col-12"></div>
                     {this.state.loaded ? (
-                        <div className="col-4 center-text">
-                            {this.props.zaal.naam}
-                            {this.state.zitplaatsComponenten.map(
-                                (rijen, index) => (
-                                    <div className="zaal-row" key={index + 1}>
-                                        <div className="rij-info">
-                                            Rij {index + 1}
+                        <>
+                            <div className="col-4 center-text">
+                                {this.props.zaal.naam}
+                                {this.state.zitplaatsComponenten.map(
+                                    (rijen, index) => (
+                                        <div
+                                            className="zaal-row"
+                                            key={index + 1}
+                                        >
+                                            <div className="rij-info">
+                                                Rij {index + 1}
+                                            </div>
+                                            {rijen}
                                         </div>
-                                        {rijen}
-                                    </div>
-                                )
-                            )}
-                        </div>
+                                    )
+                                )}
+                            </div>
+                            <div className="col-8">
+                                Legenda:
+                                <ul>
+                                    <li>
+                                        Prijs 1e rang:{" "}
+                                        {
+                                            this.state.uitvoering.voorstelling
+                                                .prijs1
+                                        }
+                                    </li>
+                                    <li>
+                                        Prijs 2e rang:{" "}
+                                        {
+                                            this.state.uitvoering.voorstelling
+                                                .prijs2
+                                        }
+                                    </li>
+                                    <li>
+                                        Prijs 3e rang:{" "}
+                                        {
+                                            this.state.uitvoering.voorstelling
+                                                .prijs3
+                                        }
+                                    </li>
+                                    <li>
+                                        Prijs 4e rang:{" "}
+                                        {
+                                            this.state.uitvoering.voorstelling
+                                                .prijs4
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </>
                     ) : (
-                        <div>LOADING TICKETS</div>
+                        <div>LOADING ZAAL</div>
                     )}
                 </div>
             </>

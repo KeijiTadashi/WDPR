@@ -51,7 +51,7 @@ jobs:
               id: deploy-to-webapp
               uses: azure/webapps-deploy@v2
               with:
-                  app-name: "WdprApp"
+                  app-name: "wdprapp"
                   slot-name: "Production"
                   publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C8E0C5D9A0374B25A9B3097AAF61B1F7 }}
                   package: .

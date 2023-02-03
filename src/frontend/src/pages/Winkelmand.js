@@ -37,6 +37,8 @@ class GetWinkelMandItems extends React.Component {
                 kolom: kolom,
                 rang: rang,
             });
+            console.log(uitvoeringId);
+            console.log(tempStrMandje);
         }
         this.state.mandje = tempMandje;
     }
@@ -46,43 +48,45 @@ class GetWinkelMandItems extends React.Component {
         var totPrijs = 0;
         Promise.all(
             this.state.mandje.map(async (i, index) => {
-                await axios
-                    .get(`${apiPath}uitvoering/${i.uitvoeringId}`)
-                    .then((response) => {
-                        var uitvoering = response.data;
-                        let prijs = 0;
-                        switch (i.rang) {
-                            case "1":
-                                prijs = uitvoering.voorstelling.prijs1;
-                                break;
-                            case "2":
-                                prijs = uitvoering.voorstelling.prijs2;
-                                break;
-                            case "3":
-                                prijs = uitvoering.voorstelling.prijs3;
-                                break;
-                            case "4":
-                                prijs = uitvoering.voorstelling.prijs4;
-                                break;
+                try {
+                    await axios
+                        .get(`${apiPath}uitvoering/${i.uitvoeringId}`)
+                        .then((response) => {
+                            var uitvoering = response.data;
+                            let prijs = 0;
+                            switch (i.rang) {
+                                case "1":
+                                    prijs = uitvoering.voorstelling.prijs1;
+                                    break;
+                                case "2":
+                                    prijs = uitvoering.voorstelling.prijs2;
+                                    break;
+                                case "3":
+                                    prijs = uitvoering.voorstelling.prijs3;
+                                    break;
+                                case "4":
+                                    prijs = uitvoering.voorstelling.prijs4;
+                                    break;
 
-                            default:
-                                break;
-                        }
-                        totPrijs += prijs;
-                        arr.push(
-                            <li key={index}>
-                                &euro;{prijs} {uitvoering.voorstelling.naam}{" "}
-                                &#40;
-                                {i.rij}, {i.kolom}&#41;
-                            </li>
-                        );
-                    });
+                                default:
+                                    break;
+                            }
+                            totPrijs += prijs;
+                            arr.push(
+                                <li key={index}>
+                                    &euro;{prijs} {uitvoering.voorstelling.naam}{" "}
+                                    &#40;
+                                    {i.rij}, {i.kolom}&#41;
+                                </li>
+                            );
+                        });
+                } catch {}
             })
         ).then(() => {
             this.setState({
                 listItems: arr,
-                loaded: true,
                 totaalPrijs: totPrijs,
+                loaded: true,
             });
             console.log(this.state.listItems);
         });

@@ -40,6 +40,16 @@ footer {
     gap: 2.4%;
 }
 
+.rij-info {
+    min-width: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.center-text {
+    text-align: center;
+}
+
 .col-1 {
     grid-column: span 1;
 }
@@ -159,6 +169,8 @@ footer {
     height: 30px;
     background: white;
     margin: 5px;
+
+    vertical-align: middle;
 }
 
 .invisible {

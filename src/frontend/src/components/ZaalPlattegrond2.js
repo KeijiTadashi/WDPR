@@ -62,6 +62,7 @@ export default class ZaalPlattegrond2 extends React.Component {
                             beschikbaar={false}
                             rang={rang}
                             key={`r${rij}k${kolom}`}
+                            ticketKey={`u${this.state.uitvoeringId}r${rij}k${kolom}`}
                         />
                     );
                 } else {
@@ -70,6 +71,7 @@ export default class ZaalPlattegrond2 extends React.Component {
                             beschikbaar={true}
                             rang={rang}
                             key={`r${rij}k${kolom}`}
+                            ticketKey={`u${this.state.uitvoeringId}r${rij}k${kolom}`}
                         />
                     );
                 }
@@ -83,25 +85,31 @@ export default class ZaalPlattegrond2 extends React.Component {
             zitplaatsComponenten: listZitplaatsComponenten,
             loaded: true,
         });
-        console.log("END OF MOUNTED");
-        console.log(this.state);
     }
 
     render() {
-        console.log("RENDER");
-        console.log(this.state);
         return (
             <>
-                <div>INFO: Zaal: {this.props.zaal.naam}</div>
-                {this.state.loaded ? (
-                    <div className="box">
-                        {this.state.zitplaatsComponenten.map((rijen) => (
-                            <div className="zaal-row">{rijen}</div>
-                        ))}
-                    </div>
-                ) : (
-                    <div>LOADING TICKETS</div>
-                )}
+                <div className="grid">
+                    <div className="col-12"></div>
+                    {this.state.loaded ? (
+                        <div className="col-4 center-text">
+                            {this.props.zaal.naam}
+                            {this.state.zitplaatsComponenten.map(
+                                (rijen, index) => (
+                                    <div className="zaal-row" key={index + 1}>
+                                        <div className="rij-info">
+                                            Rij {index + 1}
+                                        </div>
+                                        {rijen}
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    ) : (
+                        <div>LOADING TICKETS</div>
+                    )}
+                </div>
             </>
         );
     }
